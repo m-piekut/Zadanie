@@ -1,0 +1,218 @@
+@font-face { font-family: SharpSans;  src: url('../assets/SharpSans/Sharp-Sans-No1-Medium.woff'); } 
+@font-face { font-family: SharpSans; font-weight: bold; src: url('../assets/SharpSans/Sharp-Sans-No1-Bold.woff'); } 
+@font-face { font-family: SharpSans; font-weight: 300; src: url('../assets/SharpSans/Sharp-Sans-No1-Light.woff'); } 
+@font-face { font-family: SharpSans; font-weight: 700; src: url('../assets/SharpSans/Sharp-Sans-No1-ExtraBold.woff'); } 
+
+
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+button:disabled{
+    color: grey;
+    border: none;
+    cursor: no-drop;
+    &::after{
+        display: none;
+    }
+}
+section{
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+.btn-primary{
+    position: relative;
+    background-color: white;
+    // z-index: 10;
+    &:hover{
+        &::after{
+            height: -moz-calc(100% - 3px);
+            height: -webkit-calc(100% - 3px);
+            height: calc(100% - 3px);
+        }
+    }
+
+
+
+    &::after{
+        content: '';
+        width: calc(4px + 100%);
+        height: 100%;
+        background-color: #6374F9;
+        z-index: -1;
+        top: 10px;
+        left: -2px;
+        border-radius: 11px;
+        position: absolute;
+        transition: height .2s;
+    }
+}
+
+html {
+    font-family: "SharpSans";
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+
+header{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    img{
+        width: 100px;
+        height: auto;
+    }
+    nav{
+        width: 50%;
+
+    
+    ul{
+        align-self: flex-start;
+        display: flex;
+        li{
+            list-style: none;
+            margin: 0 10px;
+            a{
+                color: black;
+                text-decoration: none;
+            }
+        }
+    }
+}
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    position: absolute;
+    width: 100%;
+    &__inputWrapper{
+        width: 100%;
+        height: 70vh;
+        // background-color: blue;
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        justify-content: center;
+        // align-items: center;
+        margin: 10px 0;
+        &::after{
+            content: 'E.g popular words & phrases that your comunity use, what people call you, things you say, your band or DJ name, initials, squad names etc.';
+            width: 100%;
+            // height: 100%;
+            z-index: 10;
+            bottom: 20%;
+            position: absolute;
+        }
+    }
+    &__textArea{
+        font-size: 2rem;
+        width: 100%;
+        resize: none;
+        border: none;
+        padding: 10px;
+        font-weight: bold;
+        display: flex;
+        outline: none;
+    }
+   
+    &__buttonsWrapper{
+        height: 100%;
+        // background-color: red;
+        display: flex;
+        // flex-direction: column;
+        justify-content: space-around;
+    }
+}
+.content__button{
+    margin: 30px 0;
+    background-color: white;
+    border: 2px solid #6374F9;
+    border-radius: 11px;
+    font-size: 1.8rem;
+    // width: 240px;
+    padding: 10px 25px;
+    // height: 72px;
+    cursor: pointer;
+    // z-index: 10;
+}
+
+.step2{
+    display: flex;
+    // position: absolute;
+    width: 100%;
+    top: 0;
+    // display: none;
+    &__tshirtWrapper{
+        position: relative;
+        width: min-content;
+        background-color: red;
+    }
+    &__phrases{
+        width: 40%;
+        height: 44%;
+        background-color: transparent;
+        border: 1px dashed black;
+        padding: 15px;
+        position: absolute;
+        top: 25%;
+        left: 30%;
+        touch-action: none;
+        user-select: none;
+        overflow: hidden;
+    }
+    &__phrase{
+        font-size: 3em;
+        margin: 20px;
+        width: min-content;
+}
+
+&__phraseWrapper{
+    border-bottom: 1px solid grey;
+}
+&__right{
+    width: 20%;
+}
+&__edits{
+    width: 100%;
+    &__button{
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+    &__A{
+        height:20px;
+    }
+    &__arrow{
+        height: 10px;
+        img{
+            width: 20ex;
+            height: 10px;
+        }
+    }
+    
+    &__up{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        p{
+            font-weight: normal;
+        }
+    }
+    .colorPicker{
+        display: none;
+    }
+}
+}
+#generate{
+    display: none;
+}

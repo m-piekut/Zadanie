@@ -1,0 +1,13 @@
+.content{
+    flex-direction: row;
+    &__textArea{
+        font-size: 4rem;
+    }
+    &__buttonsWrapper{
+        height: 70vh;
+        flex-direction: column;
+        margin-right: 30px;
+        width: 25%;
+        max-width: 200px;
+    }
+}

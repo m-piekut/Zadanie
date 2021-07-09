@@ -1,0 +1,15 @@
+.step1 {
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  max-width: 1400px;
+  margin: 30px auto;
+  flex-direction: row;
+}
+
+.content__textArea {
+  font-size: 8rem;
+}
+/*# sourceMappingURL=large.css.map */

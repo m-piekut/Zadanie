@@ -1,0 +1,16 @@
+.content {
+  flex-direction: row;
+}
+
+.content__textArea {
+  font-size: 4rem;
+}
+
+.content__buttonsWrapper {
+  height: 70vh;
+  flex-direction: column;
+  margin-right: 30px;
+  width: 25%;
+  max-width: 200px;
+}
+/*# sourceMappingURL=medium.css.map */
