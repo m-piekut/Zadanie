@@ -41,7 +41,8 @@ const changeColor = (element, picker, random)=>{
 
 
 
-const letDrag = (el) => {
+const letDrag = (el, sendItem) => {
+    
     const position = {
         x: 0,
         y: 0
@@ -54,6 +55,9 @@ const letDrag = (el) => {
             move(event) {
                 position.x += event.dx
                 position.y += event.dy
+                sendItem.position_x = position.x
+                sendItem.position_y = position.y
+                
                 event.target.style.transform =
                     `translate(${position.x}px, ${position.y}px)`
 
@@ -66,11 +70,11 @@ const letDrag = (el) => {
             })
         ]
     })
-
-
-
-
-
+    
+    
+    
+    
+    
 }
 
 
@@ -80,10 +84,15 @@ let phrasesArr = []
 let clickedBtn = ''
 
 addItem = (e) => {
+    let sendItem = {
+        text: '',
+        position_x : 0, 
+        position_y : 0, 
+        color : '', 
+    }
     e.preventDefault()
     addBtn.classList.remove('btn-primary--active')
     $(generate).fadeIn(200)
-
     if (phrasesArr.length === pharsesQuantity) {
         alert(`You added ${pharsesQuantity} phrases already!`)
     } else {
@@ -99,118 +108,101 @@ addItem = (e) => {
             };
             item.style.border ='1px dashed grey'}
             )
-
-        //add edit item on right section
-        let editItem = document.createElement("div")
-        editItem.classList = "step2__edits"
-        editItem.innerHTML = `
-                <div class="step2__edits__up">
-                <img class="step2__edits__A" src="./assets/icon-text.png" alt="">
-                <p class="step2__edits__title3">${textArea.value}</p>
-                </div>
-                `;
-
-        let upSection = editItem.querySelector('.step2__edits__up')
-        let arrow = document.createElement('button')
-        arrow.classList = "step2__button"
-        arrow.innerHTML = `<img class="step2__edits__arrow arrow3" src="./assets/icon-arrow.png" alt="">`
-        upSection.append(arrow)
-
-        // COLOR PICKER
-
-        let colorPicker = document.createElement('input')
-        $(colorPicker).attr('type','range').attr('min', '0').attr('max', '100')
-        colorPicker.classList = 'color-range'   
-        let colorWrapper = document.createElement('div')
-        colorWrapper.classList = "colorPicker"
-        colorWrapper.innerHTML = '<p>Pick color</p>'
-
-
-        $(editItem).append(colorWrapper)
-        $(colorWrapper).append(colorPicker)
-        // colorPicker.addEventListener('change', (e) => {
-        //     item.style.color = e.target.value
-        // })
-        let randomRange = Math.floor(100*Math.random())
-            item.style.color = "hsl("+ ((randomRange/100)*360).toFixed(0) + ", 100%, 50%)"
-            $(colorPicker).attr('value',randomRange)
-            changeColor(item, colorPicker, randomRange)
-
-
-        editItem.addEventListener('click', () => {
-            for (const item of draggableItems) {
-                item.style.border = '1px dashed transparent'
-            }
-            item.style.border = '1px dashed grey'
-        })
-
-        editArea.prepend(editItem)
-        $(arrow).click(() => {
-            for (const item of arrows) {
-                item.classList.remove('rotate')
-            }
-
-
-            if (clickedBtn !== colorWrapper) {
-                arrow.classList.add('rotate')
-                $(clickedBtn).slideUp(400)
-                $(colorWrapper).slideDown(400)
+            
+            //add edit item on right section
+            let editItem = document.createElement("div")
+            editItem.classList = "step2__edits"
+            editItem.innerHTML = `
+            <div class="step2__edits__up">
+            <img class="step2__edits__A" src="./assets/icon-text.png" alt="">
+            <p class="step2__edits__title3">${textArea.value}</p>
+            </div>
+            `;
+            
+            let upSection = editItem.querySelector('.step2__edits__up')
+            let arrow = document.createElement('button')
+            arrow.classList = "step2__button"
+            arrow.innerHTML = `<img class="step2__edits__arrow arrow3" src="./assets/icon-arrow.png" alt="">`
+            upSection.append(arrow)
+            
+            // COLOR PICKER
+            
+            let colorPicker = document.createElement('input')
+            $(colorPicker).attr('type','range').attr('min', '0').attr('max', '100')
+            colorPicker.classList = 'color-range'   
+            let colorWrapper = document.createElement('div')
+            colorWrapper.classList = "colorPicker"
+            colorWrapper.innerHTML = '<p>Pick color</p>'
+            
+            
+            $(editItem).append(colorWrapper)
+            $(colorWrapper).append(colorPicker)
+            // colorPicker.addEventListener('change', (e) => {
+                //     item.style.color = e.target.value
+                // })
+                let randomRange = Math.floor(100*Math.random())
+                item.style.color = "hsl("+ ((randomRange/100)*360).toFixed(0) + ", 100%, 50%)"
+                $(colorPicker).attr('value',randomRange)
+                changeColor(item, colorPicker, randomRange)
                 
                 
-            } else {
-                if(colorWrapper.style.display === 'none' ){
-                    $(colorWrapper).slideDown(400)
-                    arrow.classList.add('rotate')
-                }else{
-                    $(colorWrapper).slideUp(400)
-                    arrow.classList.remove('rotate')
-                }                 
-                item.style.border = '1px solid transparent'
+                editItem.addEventListener('click', () => {
+                    for (const item of draggableItems) {
+                        item.style.border = '1px dashed transparent'
+                    }
+                    item.style.border = '1px dashed grey'
+                })
+                
+                editArea.prepend(editItem)
+                $(arrow).click(() => {
+                    for (const item of arrows) {
+                        item.classList.remove('rotate')
+                    }
+                    
+                    
+                    if (clickedBtn !== colorWrapper) {
+                        arrow.classList.add('rotate')
+                        $(clickedBtn).slideUp(400)
+                        $(colorWrapper).slideDown(400)
+                        
+                        
+                    } else {
+                        if(colorWrapper.style.display === 'none' ){
+                            $(colorWrapper).slideDown(400)
+                            arrow.classList.add('rotate')
+                        }else{
+                            $(colorWrapper).slideUp(400)
+                            arrow.classList.remove('rotate')
+                        }                 
+                        item.style.border = '1px solid transparent'
+                    }
+                    clickedBtn = colorWrapper
+                })
+                let x,y
+                letDrag(item, sendItem)
+                draggableArea.prepend(item)
+                sendItem.text = textArea.value
+                textArea.value = ''
+                
+                
+                sendItem.color = item.style.color
+                phrasesArr.push(sendItem)
+                console.log(phrasesArr)
+                
+                if (phrasesArr.length === pharsesQuantity) {
+                    addBtn.setAttribute('disabled', '')
+                    textArea.setAttribute('disabled', '')
+                }
             }
-            clickedBtn = colorWrapper
-        })
-
-        phrasesArr.push(textArea.value)
-        letDrag(item)
-        draggableArea.prepend(item)
-        textArea.value = ''
-
-        if (phrasesArr.length === pharsesQuantity) {
-            addBtn.setAttribute('disabled', '')
-            textArea.setAttribute('disabled', '')
         }
-    }
-}
-
-form.addEventListener('submit', (e) => addItem(e))
-
-
-const colorPicker = document.querySelector('.color-slider-wrap')
-const edits = document.querySelector('.step2__edits')
-
-// let send = [
-//         pharse1 = {
-//             text: p1.textContent,
-//             position_x : 0,
-//             position_y : 0,
-//             color: ''
-
-//         },
-//         pharse2 = {
-//             text: p1.textContent,
-//             position_x : 0,
-//             position_y : 0,
-//             color: ''
-
-//         },
-//         pharse3 = {
-//             text: p1.textContent,
-//             position_x : 0,
-//             position_y : 0,
-//             color: ''
-
-//         },
-//    ]
+        
+        form.addEventListener('submit', (e) => addItem(e))
+        
+        
+        const colorPicker = document.querySelector('.color-slider-wrap')
+        const edits = document.querySelector('.step2__edits')
+        
+        
 
 
 // $.ajax('/jquery/submitData', {
@@ -247,22 +239,21 @@ $('#step2').click(() => {
 const sendBtn = document.querySelector('#send')
 
 sendBtn.addEventListener('click', () => {
-    // send[0].color = colorpick1.value
-    // send[0].text = phrasesArr[0]
-    // send[1].color = colorpick2.value
-    // send[1].text =phrasesArr[1]
-    // send[2].color = colorpick3.value
-    // send[2].text = phrasesArr[2]
 
-
-    // $.ajax({
-    //     type: 'POST',
-    //     url : 'http://dummy.restapiexample.com/api/v1/create',
-    //     data: send,
-    //     success: function(){console.log('udało się');},
-    //     error: function(){console.log('nie udało się');},
-    // })
-    showItem('text')
+    let json = JSON.stringify(phrasesArr)
+    phrasesArr.length > 0 ?
+    ($.ajax('https://jsonplaceholder.typicode.com/posts', {
+            type: 'POST',  // http method
+            data:  json,  // data to submit
+            dataType: "json",
+            success: function (data, status, xhr) {
+                console.log('status: ' + status + ', data: ' + data);
+            },
+            error: function (jqXhr, textStatus, errorMessage) {
+                    console.log('Error' + errorMessage);
+            }
+        })) : alert(`Let's add some phrase first! :)` )
+    
 
 
 })
