@@ -244,7 +244,9 @@ sendBtn.addEventListener('click', () => {
             data: json, // data to submit
             dataType: "json",
             success: function (data, status, xhr) {
-                console.log('status: ' + status + ', data: ' + data);
+                console.log('status: ' + status + ', data: ' + data)
+                $(sendBtn).attr('disabled', '').text('Done')
+                ;
             },
             error: function (jqXhr, textStatus, errorMessage) {
                 console.log('Error' + errorMessage);

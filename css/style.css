@@ -30,7 +30,7 @@
 }
 
 button:disabled {
-  color: grey;
+  color: #bebebe;
   border: none;
   cursor: no-drop;
 }
