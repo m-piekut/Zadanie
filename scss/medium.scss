@@ -1,3 +1,8 @@
+section{
+    min-height: auto;
+    min-width: auto;
+}
+
 .content{
     flex-direction: row;
     &__textArea{
@@ -9,5 +14,24 @@
         margin-right: 30px;
         width: 25%;
         max-width: 200px;
+    }
+}
+
+.step2{
+    margin: 0 auto;
+    flex-direction: row;
+    max-width: 1400px;
+    &__tsirtWrapper{
+        width: 100%;
+    }
+    &__tshirt{
+        max-width:70vw;
+        max-height: -moz-calc(100vh - 100px);
+        max-height: -webkit-calc(100vh - 150px);
+        max-height: calc(100vh - 100px);
+    }
+
+    &__right{
+        flex: auto;
     }
 }

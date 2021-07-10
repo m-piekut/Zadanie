@@ -24,8 +24,20 @@ section{
     min-height: 100vh;
     min-width: 100vw;
 }
-
 .btn-primary{
+    margin: 30px 0;
+    background-color: white;
+    border: 2px solid #6374F9;
+    border-radius: 11px;
+    font-size: 1.8rem;
+    // width: 240px;
+    padding: 10px 25px;
+    // height: 72px;
+    cursor: pointer;
+    // z-index: 10;
+}
+
+.btn-primary--active{
     position: relative;
     background-color: white;
     // z-index: 10;
@@ -132,62 +144,75 @@ header{
         justify-content: space-around;
     }
 }
-.content__button{
-    margin: 30px 0;
-    background-color: white;
-    border: 2px solid #6374F9;
-    border-radius: 11px;
-    font-size: 1.8rem;
-    // width: 240px;
-    padding: 10px 25px;
-    // height: 72px;
-    cursor: pointer;
-    // z-index: 10;
-}
+
 
 .step2{
     display: flex;
     // position: absolute;
-    width: 100%;
+    // width: 100%;
+    flex-direction: column;
+    max-width: 100vw;
     top: 0;
     // display: none;
     &__tshirtWrapper{
         position: relative;
+        width: 100%;
         width: min-content;
-        background-color: red;
+        // background-color: red;
+    }
+    &__tshirt{
+        max-width: 100vw;
+        height: auto;
+        max-height: 100vh;
     }
     &__phrases{
         width: 40%;
         height: 44%;
         background-color: transparent;
         border: 1px dashed black;
-        padding: 15px;
+        padding: 5%;
         position: absolute;
         top: 25%;
         left: 30%;
         touch-action: none;
         user-select: none;
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
     }
     &__phrase{
-        font-size: 3em;
-        margin: 20px;
-        width: min-content;
+        font-size: 3vh;
+        margin-bottom: 4%;
+        border: 1px dashed transparent;
+        display: inline-block;
 }
 
 &__phraseWrapper{
     border-bottom: 1px solid grey;
 }
 &__right{
-    width: 20%;
+   display: flex;
+   flex-direction: column;
+   flex: 1;
+   justify-content: space-between;
+}
+
+&__send{
+    // justify-content: stretch;
+    justify-self: flex-end;
+    bottom: 0;
+}
+&__button{
+    background-color: transparent;
+    color: grey;
+    border: none;
+    cursor: pointer;
 }
 &__edits{
     width: 100%;
-    &__button{
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-    }
+    border-bottom: 1px solid rgb(202, 202, 202);
+    
     &__A{
         height:20px;
     }
