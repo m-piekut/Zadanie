@@ -22,7 +22,7 @@ section {
 .step2 {
   margin: 0 auto;
   flex-direction: row;
-  max-width: 1400px;
+  max-width: 1600px;
 }
 
 .step2__tsirtWrapper {

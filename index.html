@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" media="screen and (min-width: 768px)" href="./css/medium.css">
     <link rel="stylesheet" media="screen and (min-width: 992px)" href="./css/large.css">
+    <link rel="stylesheet" href="./css/colors.css">
     <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
 
 </head>
@@ -48,6 +49,7 @@
         </div>
         <div class="step2__right">
             <div class="step2__editsWrapper">
+
                 <!-- <div class="step2__edits">
                     <div class="step2__edits__up">
                         <img class="step2__edits__A" src="./assets/icon-text.png" alt="">
@@ -55,12 +57,10 @@
                         <button class="step2__button">
                             <img class="step2__edits__arrow arrow3" src="./assets/icon-arrow.png" alt="">
                         </button>
-    
                     </div>
                     <div class="colorPicker colorPicker3">
                         <p>Pick color:</p>
-                        <input type="color" name="" id="colorpick3">
-    
+                        <input class="color-range" type="range" min="0" max="100" value="75" title="Drag me, baby.">
                     </div>
                 </div> -->
 
@@ -69,7 +69,7 @@
 
 
             <button id="send" class="step2__send btn-primary btn-primary--active">Send Ajax Request With Data</button>
-            <!-- <button id="test" class="btn-primary btn-primary-active">ad</button> -->
+            <button id="test" class="btn-primary btn-primary-active">ad</button>
         </div>
 
 
