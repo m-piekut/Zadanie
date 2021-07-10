@@ -13,7 +13,7 @@ const editArea = document.querySelector('.step2__editsWrapper') // obszar na kt�
 
 
 
-let pharsesQuantity = 20 // ilość fraz które można wpisać
+let pharsesQuantity = 3 // ilość fraz które można wpisać
 
 //funkcja do zmiany kolory elementów na koszulce
 const changeColor = (element, picker, random) => {
@@ -202,16 +202,6 @@ const edits = document.querySelector('.step2__edits')
 
 
 
-// $.ajax('/jquery/submitData', {
-//     type: 'POST',  // http method
-//     data: { myData: 'This is my data.' },  // data to submit
-//     success: function (data, status, xhr) {
-//         $('p').append('status: ' + status + ', data: ' + data);
-//     },
-//     error: function (jqXhr, textStatus, errorMessage) {
-//             $('p').append('Error' + errorMessage);
-//     }
-// });
 
 
 
